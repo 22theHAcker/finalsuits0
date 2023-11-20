@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card">
+        <img src="{{ url_for('static', filename='suit_image_placeholder.jpg') }}" class="card-img-top" alt="Suit Image">
+        <div class="card-body">
+            <h5 class="card-title">{{ suit.name }}</h5>
+            <p class="card-text">Price: ${{ suit.price }}</p>
+            <p class="card-text">Color: {{ suit.color }}</p>
+            <p class="card-text">Size: {{ suit.size }}</p>
+            <a href="{{ url_for('suits.update_suit', suit_id=suit.id) }}" class="btn btn-primary">Update Suit</a>
+            <button class="btn btn-danger" data-toggle="modal" data-target="#confirmDelete">Delete Suit</button>
+        </div>
+    </div>
+
+    <!-- Modal for confirmation -->
+    <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteLabel">Confirm Deletion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this suit?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                <form action="{{ url_for('suits.delete_suit', suit_id=suit.id) }}" method="post">
+                    <button type="submit" class="btn btn-danger">Delete Suit</button>
+                </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

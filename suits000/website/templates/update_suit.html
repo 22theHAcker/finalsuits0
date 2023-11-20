@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Update Suit</h2>
+    <form method="POST" action="{{ url_for('suits.update_suit', suit_id=suit.id) }}">
+        <label for="password">Enter Password:</label>
+        <input type="password" name="password" required>
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ suit.name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" class="form-control" id="price" name="price" value="{{ suit.price }}" required>
+        </div>
+        <div class="form-group">
+            <label for="color">Color:</label>
+            <input type="text" class="form-control" id="color" name="color" value="{{ suit.color }}" required>
+        </div>
+        <div class="form-group">
+            <label for="size">Size:</label>
+            <input type="text" class="form-control" id="size" name="size" value="{{ suit.size }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Suit</button>
+    </form>
+{% endblock %}

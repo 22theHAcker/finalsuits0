@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        {% for suit in suits %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='suit_image_placeholder.jpg') }}" class="card-img-top"
+                         alt="Suit Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ suit.name }}</h5>
+
+                        <p class="card-text">Price: ${{ suit.price }}</p>
+                        <a href="{{ url_for('suits.get_suit', suit_id=suit.id) }}" class="btn btn-primary">View Details</a>
+                            Details</a>
+
+                        <form method="post" action="{{ url_for('suits.delete_suit', suit_id=suit.id) }}">
+                           <label for="password">Enter Password:</label>
+                           <input type="password" name="password" required>
+                           <button type="submit">Delete Suit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
